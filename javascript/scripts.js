@@ -37,24 +37,19 @@ $(document).ready(function() {
 	$('form').submit(function() {
 		$(".result").hide('fast');
 		$('button').addClass('loading');
-
 		$(this).ajaxSubmit({
-
 			error: function(xhr) {
 				status('Error: ' + xhr.status);
 				$('button').removeClass('loading');
 			},
-
 			success: function(response) {
 				$('button').removeClass('loading');
 				if( response !== 'false' ) {
 					$(".result").show('fast');
 					$(".result a").attr('href', response);
 				}
-
 			}
 		});
-
 		return false;
 	});
 
@@ -94,7 +89,7 @@ $(document).ready(function() {
 					+ '</div>',
 
 		templateAndroid = '<div class="size" data-size="{{size}}" data-density="{{density}}">'
-							+ '<div class="ui checkbox"><input type="checkbox" name="android[]" value="{{size}}" /><label>@{{size}}</label></div>'
+							+ '<div class="ui checkbox"><input type="checkbox" name="android[]" value="{{size}}" /><label>{{size}}</label></div>'
 							+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="width" type="number" name="androidSize{{size}}[]" placeholder="" min="0" max="9999" maxlength="4" step="1" value="" /><div class="ui basic label">px</div></div>'
 							+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="height" type="number" name="androidSize{{size}}[]" placeholder="" min="0" max="9999" maxlength="4" step="1" value="" /><div class="ui basic label">px</div></div>'
 						+ '</div>',
