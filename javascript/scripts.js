@@ -87,14 +87,14 @@ $(document).ready(function() {
 		}
 		templateIOS = '<div class="size" data-size="{{size}}" data-density="{{density}}">'
 						+ '<div class="ui checkbox"><input type="checkbox" name="ios[]" value="{{size}}"><label>@{{sizeR}}</label></div>'
-						+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="width" type="number" name="iosSize{{size}}[]" placeholder="" min="0" max="9999" step="1" value="" /><div class="ui basic label">px</div></div>'
-						+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="height" type="number" name="iosSize{{size}}[]" placeholder="" min="0" max="9999" step="1" value="" /><div class="ui basic label">px</div></div>'
+						+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="width" type="number" name="iosSize{{size}}[]" placeholder="" min="0" max="9999" maxlength="4" step="1" value="" /><div class="ui basic label">px</div></div>'
+						+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="height" type="number" name="iosSize{{size}}[]" placeholder="" min="0" max="9999" maxlength="4" step="1" value="" /><div class="ui basic label">px</div></div>'
 					+ '</div>',
 
 		templateAndroid = '<div class="size" data-size="{{size}}" data-density="{{density}}">'
 							+ '<div class="ui checkbox"><input type="checkbox" name="android[]" value="{{size}}" /><label>@{{size}}</label></div>'
-							+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="width" type="number" name="androidSize{{size}}[]" placeholder="" min="0" max="9999" step="1" value="" /><div class="ui basic label">px</div></div>'
-							+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="height" type="number" name="androidSize{{size}}[]" placeholder="" min="0" max="9999" step="1" value="" /><div class="ui basic label">px</div></div>'
+							+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="width" type="number" name="androidSize{{size}}[]" placeholder="" min="0" max="9999" maxlength="4" step="1" value="" /><div class="ui basic label">px</div></div>'
+							+ '<div class="ui right labeled input"><input class="{{size}}" data-direction="height" type="number" name="androidSize{{size}}[]" placeholder="" min="0" max="9999" maxlength="4" step="1" value="" /><div class="ui basic label">px</div></div>'
 						+ '</div>',
  		ios = '',
 		android = '';
