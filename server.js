@@ -147,7 +147,11 @@ app.post('/api/upload',function(req,res){
 				// console.log('oh no!', err);
 			} else {
 				// console.log('Zippé');
-				res.end(tmpUpload + config.target + '.zip')
+				var r = JSON.stringify({
+					zip: tmpUpload + config.target + '.zip',
+					file: config.files.imageFile.originalname
+				})
+				res.end(r);
 			}
 		});
 	}

@@ -3,9 +3,9 @@ body {
 }
 
 .container {
-	background-color: #FFF;
 	padding: 20px;
 	.title {
+		overflow: hidden;
 		margin: 10px 0 50px;
 		h1, h2 {
 			display: block;
@@ -14,6 +14,7 @@ body {
 		h1 {
 			margin: 0;
 			font-size: 3em;
+			color: #2185d0;
 		}
 		h2 {
 			margin: 0;
@@ -21,6 +22,9 @@ body {
 		}
 	}
 	form {
+		border-radius: 10px;
+		background-color: #FFF;
+		padding-top: 20px !important;
 		h4 {
 			text-align: center;
 			margin-bottom: 20px;
@@ -75,7 +79,7 @@ body {
 		}
 		.drop {
 			width: 60%;
-			margin: 50px auto;
+			margin: 20px auto;
 			input[type="file"] {
 				display: none;
 			}
@@ -87,10 +91,9 @@ body {
 		}
 	}
 	.result {
-		display: none;
-		margin: 20px 0 20px;
-		font-size: 2em;
-
+		margin: 20px 0;
+		font-size: 1.1em;
+		text-align: center;
 	}
 
 }

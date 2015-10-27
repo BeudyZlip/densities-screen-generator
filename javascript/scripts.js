@@ -35,7 +35,6 @@ $(document).ready(function() {
 	})
 
 	$('form').submit(function() {
-		$(".result").hide('fast');
 		$('button').addClass('loading');
 		$(this).ajaxSubmit({
 			error: function(xhr) {
@@ -45,8 +44,8 @@ $(document).ready(function() {
 			success: function(response) {
 				$('button').removeClass('loading');
 				if( response !== 'false' ) {
-					$(".result").show('fast');
-					$(".result a").attr('href', response);
+					response = JSON.parse(response);
+					$(".result").append('<a href="' + response.zip + '"><i class="file archive outline icon"></i> ' + response.file + '</a><br />');
 				}
 			}
 		});
