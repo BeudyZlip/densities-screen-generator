@@ -156,12 +156,16 @@ app.post('/api/upload',function(req,res){
 	}
 
 	if( config.os.ios || config.os.android ) {
+
+		console.log( config.os )
+
 		var funcs = [createTmpDir, moveFiles, createImage, zip, deleteUpload],
 			result = Q();
 		funcs.forEach(function (f) {
 			result = result.delay(300).then(f);
 		});
 	}
+	else res.end('false');
 
 });
 

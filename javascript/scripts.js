@@ -47,8 +47,10 @@ $(document).ready(function() {
 
 			success: function(response) {
 				$('button').removeClass('loading');
-				$(".result").show('fast');
-				$(".result a").attr('href', response);
+				if( response !== 'false' ) {
+					$(".result").show('fast');
+					$(".result a").attr('href', response);
+				}
 
 			}
 		});
