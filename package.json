@@ -1,0 +1,22 @@
+{
+  "name": "densities-screen-generator",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "~4.10.2",
+    "fs": "0.0.2",
+    "jquery": "^2.1.4",
+    "lwip": "0.0.8",
+    "lwip-promise": "^0.1.0",
+    "multer": "~0.1.6",
+    "mv": "^2.1.1",
+    "object-merge": "^2.5.1",
+    "q": "^1.4.1",
+    "zip-folder": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-inject": "^3.0.0",
+    "gulp-sass": "^2.0.4",
+    "wiredep": "^2.2.2"
+  }
+}

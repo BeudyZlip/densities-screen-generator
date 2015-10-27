@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Densities Screen Generator</title>
+
+		<!-- bower:css -->
+		<link rel="stylesheet" href="bower_components/semantic/dist/semantic.css" />
+		<!-- endbower -->
+
+		<!-- inject:css -->
+		<link rel="stylesheet" href="/css/style.css">
+		<!-- endinject -->
+
+		<!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/jquery-form/jquery.form.js"></script>
+		<script src="bower_components/semantic/dist/semantic.js"></script>
+		<!-- endbower -->
+
+		<!-- inject:js -->
+		<script src="/javascript/scripts.js"></script>
+		<!-- endinject -->
+
+	</head>
+	<body>
+
+		<div class="ui container">
+
+			<div class="title ui grid centered">
+
+				<h1>mobile densities generator</h1>
+				<h2>IOS &amp; Android</h2>
+
+			</div>
+
+			<form class="ui grid" enctype="multipart/form-data" action="/api/upload" method="post">
+
+					<div class="eight wide column">
+
+						<h4><i class="apple icon"></i> IOS</h4>
+
+						<div class="width">Width</div>
+						<div class="height">Height</div>
+
+						<fieldset class="ios"></fieldset>
+
+					</div>
+
+					<div class="eight wide column">
+
+						<h4><i class="android icon"></i> Android</h4>
+
+						<div class="width">Width</div>
+						<div class="height">Height</div>
+
+						<fieldset class="android"></fieldset>
+
+					</div>
+
+					<div class="sixteen wide column">
+
+						<fieldset class="drop ">
+							<input type="file" name="imageFile" />
+							<div class="ui middle aligned grid dropzone">
+								<p class="eight column wide">
+									<i class="file image outline icon"></i>
+									<span>Drag and drop your file or click to explore</span>
+								</p>
+							</div>
+						</fieldset>
+
+					</div>
+
+
+					<div class="sixteen centered wide column">
+
+						<button name="submit" type="submit" class="ui primary button">Process</button>
+
+					</div>
+
+					<div class="sixteen wide column">
+						<div class="result ui grid centered">
+							<a href=""><i class="file archive outline icon"></i> Download</a>
+						</div>
+					</div>
+
+				</div>
+
+			</form>
+
+
+		</div>
+
+	</body>
+</html>

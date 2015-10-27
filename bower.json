@@ -1,0 +1,13 @@
+{
+  "name": "densities-screen-generator",
+  "authors": [
+    "Kévin MARTIN"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-form": "https://github.com/malsup/form.git#~3.46.0",
+    "semantic": "semantic-ui#~2.1.4"
+  }
+}
