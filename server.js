@@ -9,7 +9,8 @@ var express			=		require("express"),
 	objectMerge		= 		require('object-merge'),
 	Q				= 		require('q'),
 	tmpUpload		= 		'./uploads/',
-	port			= 		'3008';
+
+app.set('port', (process.env.PORT || 3008))
 
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/javascript',  express.static(__dirname + '/javascript'));
@@ -191,6 +192,6 @@ var deleteFolderRecursive = function(path) {
  	}
 };
 
-app.listen(port, "localhost" ,function(){
-	console.log("Working on port " + port);
+app.listen( app.get('port') ,function(){
+	console.log("Working on port " + app.get('port') );
 });
