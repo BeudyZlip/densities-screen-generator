@@ -9,6 +9,7 @@ var express			=		require("express"),
 	objectMerge		= 		require('object-merge'),
 	Q				= 		require('q'),
 	tmpUpload		= 		'./uploads/',
+	persistance 	= 		10, // Time in miniutes
 	port			= 		(process.env.PORT || 3008);
 
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
@@ -155,6 +156,18 @@ app.post('/api/upload',function(req,res){
 		deleteFolderRecursive( tmpUpload + config.target );
 	}
 
+	var removeOlderZip = function() {
+		var dateNow = new Date();
+		fs.readdir(tmpUpload, function(err, items) {
+			var result = Q();
+			items.forEach(function (f) {
+				var dateFile = fs.stat( tmpUpload + f, function(err, stats)  {
+					if( Date.parse( dateNow ) - Date.parse( stats.mtime ) >= ( persistance * 60000 ) ) fs.unlinkSync( tmpUpload + f );
+				})
+			});
+		});
+	}
+
 	if(
 		(
 			( config.os.ios && Object.size(config.os.ios) > 0 ) ||
@@ -162,7 +175,7 @@ app.post('/api/upload',function(req,res){
 		)
 		&& Object.size( config.files ) > 0
 	) {
-		var funcs = [createTmpDir, moveFiles, createImage, zip, deleteUpload],
+		var funcs = [createTmpDir, moveFiles, createImage, zip, deleteUpload, removeOlderZip],
 			result = Q();
 		funcs.forEach(function (f) {
 			result = result.delay(300).then(f);
