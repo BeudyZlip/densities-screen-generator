@@ -155,17 +155,23 @@ app.post('/api/upload',function(req,res){
 		deleteFolderRecursive( tmpUpload + config.target );
 	}
 
-	if( config.os.ios || config.os.android ) {
-
-		console.log( config.os )
-
+	if(
+		(
+			( config.os.ios && Object.size(config.os.ios) > 0 ) ||
+			( config.os.android && Object.size(config.os.android) > 0 )
+		)
+		&& Object.size( config.files ) > 0
+	) {
 		var funcs = [createTmpDir, moveFiles, createImage, zip, deleteUpload],
 			result = Q();
 		funcs.forEach(function (f) {
 			result = result.delay(300).then(f);
 		});
 	}
-	else res.end('false');
+	else {
+		if( Object.size( config.files ) > 0  ) fs.unlinkSync( config.files.imageFile.path );
+		res.end('false');
+	}
 
 });
 
