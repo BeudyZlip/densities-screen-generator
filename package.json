@@ -1,5 +1,9 @@
 {
   "name": "densities-screen-generator",
+  "scripts": {
+	  "start": "node server.js",
+	  "postinstall": "bower install"
+  },
   "version": "0.0.1",
   "dependencies": {
     "express": "~4.10.2",
