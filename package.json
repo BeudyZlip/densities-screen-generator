@@ -7,6 +7,10 @@
   "version": "0.0.1",
   "dependencies": {
     "gulp": "^3.9.0",
+    "gulp": "^3.9.0",
+    "gulp-inject": "^3.0.0",
+    "gulp-sass": "^2.0.4",
+    "wiredep": "^2.2.2",
     "bower": "~1.6.4",
     "express": "~4.10.2",
     "fs": "0.0.2",
@@ -21,9 +25,5 @@
     "zip-folder": "^1.0.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-inject": "^3.0.0",
-    "gulp-sass": "^2.0.4",
-    "wiredep": "^2.2.2"
   }
 }
