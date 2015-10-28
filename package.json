@@ -1,14 +1,16 @@
 {
   "name": "densities-screen-generator",
   "scripts": {
-	  "start": "node server.js",
-	  "postinstall": "bower install && gulp"
+    "start": "node server.js",
+    "postinstall": "bower install && gulp"
   },
   "version": "0.0.1",
   "dependencies": {
-	"bower": "~1.6.4",
+    "gulp": "^3.9.0",
+    "bower": "~1.6.4",
     "express": "~4.10.2",
     "fs": "0.0.2",
+    "gulp": "^3.9.0",
     "jquery": "^2.1.4",
     "lwip": "0.0.8",
     "lwip-promise": "^0.1.0",
