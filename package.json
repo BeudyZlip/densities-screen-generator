@@ -2,7 +2,7 @@
   "name": "densities-screen-generator",
   "scripts": {
 	  "start": "node server.js",
-	  "postinstall": "bower install"
+	  "postinstall": "bower install && gulp"
   },
   "version": "0.0.1",
   "dependencies": {

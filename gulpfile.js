@@ -3,7 +3,7 @@ var gulp = require('gulp'),
 	wiredep = require('wiredep').stream,
 	sass = require('gulp-sass');
 
-gulp.task('default', function () {});
+gulp.task('default', ['styles', 'inject'], function () {});
 
 gulp.task('inject', function () {
 	var sources = gulp.src([
