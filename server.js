@@ -226,7 +226,7 @@ var deleteFolderRecursive = function(path) {
  	}
 };
 
-var job = new CronJob('*/10 * * * *', function(){ //This will call this function every 2 minutes
+var job = new CronJob('*/10 * * * *', function(){
 	removeOlderZip();
 }, null, false);
 job.start();
