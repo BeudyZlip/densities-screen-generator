@@ -8,6 +8,7 @@ var express			=		require("express"),
 	lwip			= 		require('lwip-promise'),
 	objectMerge		= 		require('object-merge'),
 	Q				= 		require('q'),
+	CronJob 		= 		require('cron').CronJob,
 	tmpUpload		= 		'./uploads/',
 	persistance 	= 		10, // Time in miniutes
 	port			= 		(process.env.PORT || 3008);
@@ -167,18 +168,6 @@ app.post('/api/upload',function(req,res){
 		deleteFolderRecursive( tmpUpload + config.target );
 	}
 
-	var removeOlderZip = function() {
-		var dateNow = new Date();
-		fs.readdir(tmpUpload, function(err, items) {
-			var result = Q();
-			items.forEach(function (f) {
-				var dateFile = fs.stat( tmpUpload + f, function(err, stats)  {
-					if( Date.parse( dateNow ) - Date.parse( stats.mtime ) >= ( persistance * 60000 ) ) fs.unlinkSync( tmpUpload + f );
-				})
-			});
-		});
-	}
-
 	if(
 		(
 			( config.os.ios && Object.size(config.os.ios) > 0 ) ||
@@ -186,7 +175,7 @@ app.post('/api/upload',function(req,res){
 		)
 		&& Object.size( config.files ) > 0
 	) {
-		var funcs = [createTmpDir, moveFiles, createImage, zip, deleteUpload, removeOlderZip],
+		var funcs = [createTmpDir, moveFiles, createImage, zip, deleteUpload],
 			result = Q();
 		funcs.forEach(function (f) {
 			result = result.delay(300).then(f);
@@ -198,6 +187,18 @@ app.post('/api/upload',function(req,res){
 	}
 
 });
+
+var removeOlderZip = function() {
+	var dateNow = new Date();
+	fs.readdir(tmpUpload, function(err, items) {
+		var result = Q();
+		items.forEach(function (f) {
+			var dateFile = fs.stat( tmpUpload + f, function(err, stats)  {
+				if( Date.parse( dateNow ) - Date.parse( stats.mtime ) >= ( persistance * 60000 ) ) fs.unlinkSync( tmpUpload + f );
+			})
+		});
+	});
+}
 
 function reverse(s){
 	return s.split("").reverse().join("");
@@ -224,6 +225,11 @@ var deleteFolderRecursive = function(path) {
 		fs.rmdirSync(path);
  	}
 };
+
+var job = new CronJob('*/10 * * * *', function(){ //This will call this function every 2 minutes
+	removeOlderZip();
+}, null, false);
+job.start();
 
 app.listen(port ,function(){
 	console.log("Working on port " + port);
