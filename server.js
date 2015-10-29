@@ -16,6 +16,7 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/javascript',  express.static(__dirname + '/javascript'));
 app.use('/css',  express.static(__dirname + '/css'));
 app.use('/uploads',  express.static(__dirname + '/uploads'));
+app.use('/images',  express.static(__dirname + '/images'));
 
 app.use(multer({
 	dest: tmpUpload,
