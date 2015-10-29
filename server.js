@@ -109,13 +109,14 @@ app.post('/api/upload',function(req,res){
 				if( size == '@1x' ) size = '';
 				lwip
 					.open( url + file.name, function(err, image){
-						image
-							.batch()
-							.resize(width, height)
-							.writeFile( url + dir + '/' + nameFile + size + '.' + extFile, function(err){
-								// console.log( width, height, size, dir )
-								return true;
-							})
+						if( image )
+							image
+								.batch()
+								.resize(width, height)
+								.writeFile( url + dir + '/' + nameFile + size + '.' + extFile, function(err){
+									// console.log( width, height, size, dir )
+									return true;
+								})
 					})
 			}
 			if( config.os.ios ) {
@@ -194,7 +195,12 @@ var removeOlderZip = function() {
 		var result = Q();
 		items.forEach(function (f) {
 			var dateFile = fs.stat( tmpUpload + f, function(err, stats)  {
-				if( Date.parse( dateNow ) - Date.parse( stats.mtime ) >= ( persistance * 60000 ) ) fs.unlinkSync( tmpUpload + f );
+				if( Date.parse( dateNow ) - Date.parse( stats.mtime ) >= ( persistance * 60000 ) ) {
+					if( stats.isFile() )
+						fs.unlinkSync( tmpUpload + f );
+					else if( stats.isDirectory() )
+						deleteFolderRecursive( tmpUpload + f );
+				}
 			})
 		});
 	});
