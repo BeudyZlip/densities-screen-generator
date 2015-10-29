@@ -49,6 +49,7 @@ $(document).ready(function() {
 				if( response !== 'false' ) {
 					response = JSON.parse(response);
 					$(".result").append('<a href="' + response.zip + '"><i class="file archive outline icon"></i> ' + response.file + '</a><br />');
+					location.replace(response.zip);
 				}
 			}
 		});
