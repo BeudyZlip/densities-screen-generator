@@ -48,7 +48,11 @@ $(document).ready(function() {
 				$('button').removeClass('loading');
 				if( response !== 'false' ) {
 					response = JSON.parse(response);
-					$(".result").append('<a href="' + response.zip + '"><i class="file archive outline icon"></i> ' + response.file + '</a><br />');
+					$(".result").show().append('<a href="' + response.zip + '"><i class="file archive outline icon"></i> ' + response.file + '</a>');
+					setTimeout(function() {
+						$(".result a:last").remove();
+					}, 600000);
+
 					location.replace(response.zip);
 				}
 			}
