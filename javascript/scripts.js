@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+	if( window.location.hostname.indexOf("heroku") || window.location.hostname.indexOf("localhost") )
+		$(".amazonAds").remove();
+
 	$(document)
 		.on('dragenter', '.dropzone', function() {
 			return false;
