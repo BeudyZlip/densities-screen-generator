@@ -62,15 +62,15 @@ $(document).ready(function() {
 		};
 	}
 
-	$('form').submit(function() {
-		$('button').addClass('loading');
+	$('form.generator').submit(function() {
+		$('button', this).addClass('loading');
 		$(this).ajaxSubmit({
 			error: function(xhr) {
 				status('Error: ' + xhr.status);
-				$('button').removeClass('loading');
+				$('form.generator button').removeClass('loading');
 			},
 			success: function(response) {
-				$('button').removeClass('loading');
+				$('form.generator button').removeClass('loading');
 				if( response !== 'false' ) {
 					response = JSON.parse(response);
 					$(".result").show().append('<a href="' + response.zip + '"><i class="file archive outline icon"></i> ' + response.file + '</a>');
@@ -170,5 +170,35 @@ $(document).ready(function() {
 			$('input[type=checkbox]',parent).prop('checked', false);
 		calcDenisty( $(this).val(), density, direction, genre );
 	})
+
+	$('.contactLink').bind('click', function(){
+		$('.contactModal')
+			.modal({
+				blurring: true
+			})
+			.modal('show');
+	});
+
+	$('form.contact').submit(function() {
+		$('button', this).addClass('loading');
+		if( $(".city input").val() == '' ) $(".city input").val('d9ad583cc79c73c636385003955c4a9f');
+		$(this).ajaxSubmit({
+			error: function(xhr) {
+				status('Error: ' + xhr.status);
+				$('form.contact button').removeClass('loading');
+			},
+			success: function(response) {
+				$('form.contact button').removeClass('loading');
+				if( response !== 'false' ) {
+					$('.contactModal').modal('hide');
+					$('.successModal').modal('show');
+				}
+				else {
+					$('.errorModal').modal('show');
+				}
+			}
+		});
+		return false;
+	});
 
 });

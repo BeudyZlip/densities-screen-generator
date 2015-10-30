@@ -9,6 +9,7 @@ var express			=		require("express"),
 	objectMerge		= 		require('object-merge'),
 	Q				= 		require('q'),
 	CronJob 		= 		require('cron').CronJob,
+	sendmail 		= 		require('sendmail')(),
 	tmpUpload		= 		'./uploads/',
 	persistance 	= 		10, // Time in miniutes
 	port			= 		(process.env.PORT || 3008);
@@ -40,6 +41,40 @@ app.get('/sitemap.xml',function(req,res){
 });
 app.get('/robots.txt',function(req,res){
 	res.sendFile(__dirname + "/robots.txt");
+});
+
+app.post('/api/contact',function(req,res){
+
+	var title = (req.body.title) ? req.body.title : false,
+		email = (req.body.email) ? req.body.email : false,
+		message = (req.body.message) ? req.body.message : false,
+		city = (req.body.city) ? req.body.city : false;
+
+	// AntiSpam
+	if(city == "d9ad583cc79c73c636385003955c4a9f") {
+
+		var validateEmail = function(email) {
+			var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+			return re.test(email);
+		}
+
+		if (title && validateEmail(email) && message) {
+			sendmail({
+				from: email,
+				to: 'kevin.martin@studio104.fr',
+				subject: title,
+				content: message,
+			}, function(err, reply) {
+				console.log(err && err.stack);
+				// console.dir(reply);
+				if (err) res.end('false');
+				else res.end('true');
+			});
+		}
+		else res.end('false');
+
+	}
+	else res.end('false');
 });
 
 app.post('/api/upload',function(req,res){

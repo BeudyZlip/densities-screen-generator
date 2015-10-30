@@ -2,6 +2,10 @@ body {
 	background-color: #EFEFEF;
 }
 
+*, *:active, *:focus {
+	outline: none;
+}
+
 .container {
 	padding: 20px;
 	.title {
@@ -111,9 +115,50 @@ body {
 	}
 
 }
-
+.modal {
+	.field {
+		label {
+			color: #FFF !important;
+		}
+	}
+	button {
+		float: right;
+	}
+	.city {
+		display: none;
+	}
+	&.errorModal {
+		.content {
+			font-size: 4em;
+			vertical-align: middle;
+			text-align: center;
+			i {
+				font-size: 2em;
+				vertical-align: middle;
+				margin-bottom: 0.5em;
+			}
+		}
+	}
+	&.successModal {
+		.content {
+			font-size: 4em;
+			vertical-align: middle;
+			text-align: center;
+			i {
+				font-size: 2em;
+				vertical-align: middle;
+				margin-bottom: 0.5em;
+			}
+		}
+	}
+}
 .link {
 	text-align: right;
+	.contactLink {
+		float: left;
+		font-size: 2em;
+		color: #272727
+	}
 }
 
 .amazonAds {

@@ -18,6 +18,7 @@
     "mv": "^2.1.1",
     "object-merge": "^2.5.1",
     "q": "^1.4.1",
+    "sendmail": "^0.2.1",
     "zip-folder": "^1.0.0"
   },
   "devDependencies": {}

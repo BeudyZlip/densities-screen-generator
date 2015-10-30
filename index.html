@@ -33,7 +33,7 @@
 
 			</div>
 
-			<form class="ui grid" enctype="multipart/form-data" action="/api/upload" method="post">
+			<form class="ui grid generator" enctype="multipart/form-data" action="/api/upload" method="post">
 
 					<div class="eight wide column">
 
@@ -86,6 +86,7 @@
 			</form>
 
 			<div class="ui container link">
+				<a href="#" class="contactLink"><i class="mail outline icon"></i></a>
 				<a href="http://www.innovantic.fr" target="_blank"><img src="images/innovantic.png" alt="Innovantic" title="Innovantic" /></a>
 			</div>
 
@@ -93,6 +94,48 @@
 				<iframe src="http://rcm-eu.amazon-adsystem.com/e/cm?t=mobiledensiti-21&o=8&p=14&l=ez&f=ifr&f=ifr" width="160" height="600" scrolling="no" marginwidth="0" marginheight="0" border="0" frameborder="0" style="border:none;"></iframe>
 			</div>
 
+		</div>
+
+		<div class="ui basic small modal contactModal">
+			<i class="close icon"></i>
+			<div class="header">
+				Contact
+			</div>
+			<div class="content">
+				<form class="ui form contact" enctype="multipart/form-data" method="post" action="/api/contact">
+					<div class="field">
+						<label>Title</label>
+						<input type="text" name="title" placeholder="Title">
+					</div>
+					<div class="field">
+						<label>E-mail</label>
+						<input type="text" name="email" placeholder="mail@domain.com">
+					</div>
+					<div class="field">
+						<label>Message</label>
+						<textarea name="message" placeholder="Your message"></textarea>
+					</div>
+					<div class="field city">
+						<label>city</label>
+						<input type="text" name="city" placeholder="New York">
+					</div>
+					<button name="submit" type="submit" class="ui primary button">Submit</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="ui basic small modal errorModal">
+			<i class="close icon"></i>
+			<div class="content">
+				<i class="frown icon red"></i> Error ...
+			</div>
+		</div>
+
+		<div class="ui basic small modal successModal">
+			<i class="close icon"></i>
+			<div class="content">
+				<i class="smile icon green"></i> it's sent !
+			</div>
 		</div>
 
 		<script>
