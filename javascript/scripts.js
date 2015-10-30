@@ -3,8 +3,6 @@ $(document).ready(function() {
 	if( window.location.hostname.indexOf("heroku") == 0 || window.location.hostname.indexOf("localhost") == 0 )
 		$(".amazonAds").remove();
 
-	console.log( window.location.hostname )
-
 	$(document)
 		.on('dragenter', '.dropzone', function() {
 			return false;
@@ -25,10 +23,8 @@ $(document).ready(function() {
 					e.preventDefault();
 					e.stopPropagation();
 					$("input[type='file']").prop("files", e.originalEvent.dataTransfer.files);
-					$(".drop p span").text(e.originalEvent.dataTransfer.files[0].name)
 				}
 			}
-			$(this).removeClass('hover');
 			return false;
 		})
 		.on('click', '.dropzone', function(e) {
@@ -36,8 +32,35 @@ $(document).ready(function() {
 		});
 
 	$(".drop input[type='file']").on('change', function(e){
-		$(".drop p span").text( e.originalEvent.target.files[0].name )
+		onInputFileChange(e.originalEvent.target.files[0].name,this.files)
 	})
+
+	var onInputFileChange = function(el,F) {
+		if(F && F[0]) for(var i=0; i<F.length; i++) readImage( F[i] );
+		//$(".drop p span").text( el );
+	}
+
+	var readImage = function(file) {
+		var reader = new FileReader();
+		var image  = new Image();
+		reader.readAsDataURL(file);
+		reader.onload = function(_file) {
+			image.src = _file.target.result;
+			image.onload = function() {
+				var w = this.width,
+					h = this.height,
+					t = file.type,
+					n = file.name,
+					s = ~~(file.size/1024) +'KB';
+				$(".drop p").html('<img class="preview" src="'+ this.src +'" /> '+n);
+
+				console.log(w,h)
+			};
+			image.onerror= function() {
+				// alert('Invalid file type: '+ file.type);
+			};
+		};
+	}
 
 	$('form').submit(function() {
 		$('button').addClass('loading');
@@ -54,7 +77,6 @@ $(document).ready(function() {
 					setTimeout(function() {
 						$(".result a:last").remove();
 					}, 600000);
-
 					location.replace(response.zip);
 				}
 			}
