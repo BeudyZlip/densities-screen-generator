@@ -68,6 +68,8 @@ $(document).ready(function() {
 			error: function(xhr) {
 				status('Error: ' + xhr.status);
 				$('form.generator button').removeClass('loading');
+
+				$('.errorModal').modal('show');
 			},
 			success: function(response) {
 				$('form.generator button').removeClass('loading');
@@ -78,6 +80,9 @@ $(document).ready(function() {
 						$(".result a:last").remove();
 					}, 600000);
 					location.replace(response.zip);
+				}
+				else {
+					$('.errorModal').modal('show');
 				}
 			}
 		});
